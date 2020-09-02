@@ -1,0 +1,44 @@
+syntax = "proto3";
+        
+import "c:/Users/vijay/Desktop/workspace/empty.proto";
+
+option java_multiple_files = true;
+option java_package = "edu.sjsu.cs249.adb";
+
+service ABDService {
+    rpc name(google.protobuf.Empty) returns (NameResponse);
+    rpc read1(Read1Request) returns (Read1Response);
+    rpc read2(Read2Request) returns (AckResponse);
+    rpc write(WriteRequest) returns (AckResponse);
+}
+
+package adb;
+
+// the unique name to identify the server ABD is running on
+message NameResponse {
+    string name = 1;
+}
+
+message Read1Request {
+    string register = 1;
+}
+
+message Read1Response {
+    uint64 timestamp = 1;
+    string value = 2;
+}
+
+message Read2Request {
+    string register = 1;
+    uint64 timestamp = 2;
+    string value = 3;
+}
+
+message AckResponse {
+}
+
+message WriteRequest {
+    string register = 1;
+    uint64 timestampe = 2;
+    string value = 3;
+}
